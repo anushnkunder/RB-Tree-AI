@@ -1,0 +1,177 @@
+/* Animation Keyframes and Transitions */
+
+/* Node Insertion Animation */
+@keyframes nodeInsert {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.node.inserting circle {
+  animation: nodeInsert 0.5s ease;
+}
+
+/* Node Deletion Animation */
+@keyframes nodeDelete {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+.node.deleting circle {
+  animation: nodeDelete 0.5s ease;
+}
+
+/* Color Transition Animation */
+@keyframes colorChange {
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.5);
+  }
+}
+
+.node.recoloring circle {
+  animation: colorChange 0.8s ease;
+}
+
+/* Rotation Animation */
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.node.rotating {
+  animation: rotate 0.6s ease;
+}
+
+/* Highlight Animation */
+@keyframes highlight {
+  0%, 100% {
+    stroke-width: 3px;
+    stroke: currentColor;
+  }
+  50% {
+    stroke-width: 6px;
+    stroke: #f1c40f;
+  }
+}
+
+.node.highlight circle {
+  animation: highlight 1s ease infinite;
+}
+
+/* Search Path Animation */
+@keyframes searchPath {
+  0%, 100% {
+    stroke-width: 2px;
+  }
+  50% {
+    stroke-width: 5px;
+  }
+}
+
+.link.search-path {
+  animation: searchPath 0.8s ease;
+  stroke: #3498db;
+}
+
+/* Case Banner Animation */
+@keyframes bannerSlide {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.case-banner {
+  animation: bannerSlide 0.4s ease;
+}
+
+/* Fade In */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease;
+}
+
+/* Slide Up */
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-up {
+  animation: slideUp 0.4s ease;
+}
+
+/* Bounce */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.bounce {
+  animation: bounce 0.6s ease;
+}
+
+/* Smooth Transitions */
+.smooth-transition {
+  transition: all 0.3s ease;
+}
+
+/* Loading Pulse */
+@keyframes loadingPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.loading-pulse {
+  animation: loadingPulse 1.5s ease infinite;
+}

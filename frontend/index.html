@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Red-Black Tree Visualizer</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/visualization.css">
+  <link rel="stylesheet" href="css/performance.css">
+  <link rel="stylesheet" href="css/analytics.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🌳 Red-Black Tree Visualizer</h1>
+      <p class="subtitle">Interactive visualization, performance analysis, and AI analytics</p>
+    </header>
+
+    <!-- Tab Navigation -->
+    <nav class="tab-nav">
+      <button class="tab-btn active" data-tab="visualization">Visualization</button>
+      <button class="tab-btn" data-tab="performance">Performance</button>
+      <button class="tab-btn" data-tab="analytics">AI Analysis</button>
+    </nav>
+
+    <!-- Tab 1: Visualization Mode -->
+    <div id="visualization-tab" class="tab-content active">
+      <div class="controls-panel">
+        <div class="input-group">
+          <input type="number" id="value-input" placeholder="Enter value" />
+          <button id="insert-btn" class="btn btn-primary">Insert</button>
+          <button id="delete-btn" class="btn btn-danger">Delete</button>
+          <button id="search-btn" class="btn btn-info">Search</button>
+          <button id="reset-btn" class="btn btn-secondary">Reset</button>
+        </div>
+        
+        <div class="mode-controls">
+          <label>
+            <input type="checkbox" id="manual-mode-toggle" />
+            Manual Step Mode
+          </label>
+        </div>
+
+        <div class="animation-controls" id="animation-controls" style="display: none;">
+          <button id="prev-step-btn" class="btn btn-sm">⏮ Prev</button>
+          <button id="play-pause-btn" class="btn btn-sm">▶ Play</button>
+          <button id="next-step-btn" class="btn btn-sm">⏭ Next</button>
+          <span id="step-counter">Step 0 of 0</span>
+        </div>
+
+        <div class="history-navigation">
+          <button id="prev-insertion-btn" class="btn btn-sm btn-secondary">⏪ Previous Insertion</button>
+          <span id="insertion-counter">Viewing current state</span>
+          <button id="next-insertion-btn" class="btn btn-sm btn-secondary">⏩ Next Insertion</button>
+        </div>
+      </div>
+
+      <div class="error-display" id="error-display"></div>
+
+      <div class="main-content">
+        <div class="tree-container">
+          <svg id="tree-svg" width="100%" height="700"></svg>
+          <div class="metrics-display" id="metrics-display">
+            <div class="metric">Height: <span id="height-value">0</span></div>
+            <div class="metric">Black-Height: <span id="black-height-value">0</span></div>
+            <div class="metric">Rotations: <span id="rotations-value">0</span></div>
+            <div class="metric">Recolors: <span id="recolors-value">0</span></div>
+            <div class="metric">Size: <span id="size-value">0</span></div>
+          </div>
+        </div>
+
+        <div class="history-panel">
+          <h3>Operation History</h3>
+          <div id="history-log" class="history-log"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 2: Performance Mode -->
+    <div id="performance-tab" class="tab-content">
+      <div class="controls-panel">
+        <div class="input-group">
+          <input type="text" id="sequence-input" placeholder="Enter sequence (e.g., 10,20,30,15,5)" />
+          <button id="compare-btn" class="btn btn-primary">Compare Trees</button>
+        </div>
+        <div class="input-group">
+          <span>Or:</span>
+          <input type="number" id="random-count" placeholder="Node count" value="50" />
+          <button id="generate-random-btn" class="btn btn-secondary">Generate Random</button>
+        </div>
+        <div class="input-group">
+          <label>
+            <input type="checkbox" id="show-side-by-side" />
+            Show Side-by-Side Trees
+          </label>
+        </div>
+      </div>
+
+      <div class="error-display" id="performance-error"></div>
+
+      <div class="comparison-results" id="comparison-results">
+        <h3>Comparison Results</h3>
+        <table id="comparison-table" class="comparison-table">
+          <thead>
+            <tr>
+              <th>Tree Type</th>
+              <th>Height</th>
+              <th>Rotations</th>
+              <th>Recolors</th>
+              <th>Time (ms)</th>
+              <th>Size</th>
+            </tr>
+          </thead>
+          <tbody id="comparison-tbody"></tbody>
+        </table>
+
+        <div class="chart-container">
+          <h4>Height Comparison</h4>
+          <svg id="comparison-chart" width="100%" height="300"></svg>
+        </div>
+
+        <div id="side-by-side-container" class="side-by-side-container" style="display: none;">
+          <div class="tree-view">
+            <h4>RB Tree</h4>
+            <svg id="rb-tree-svg" width="100%" height="400"></svg>
+          </div>
+          <div class="tree-view">
+            <h4>AVL Tree</h4>
+            <svg id="avl-tree-svg" width="100%" height="400"></svg>
+          </div>
+          <div class="tree-view">
+            <h4>BST</h4>
+            <svg id="bst-tree-svg" width="100%" height="400"></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 3: AI Analytics Mode -->
+    <div id="analytics-tab" class="tab-content">
+      <div class="controls-panel">
+        <div class="input-group">
+          <label for="pattern-select">Pattern:</label>
+          <select id="pattern-select">
+            <option value="random">Random</option>
+            <option value="sorted">Sorted (Ascending)</option>
+            <option value="reverse">Reverse Sorted</option>
+            <option value="alternating">Alternating High-Low</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="trials-input">Trials:</label>
+          <input type="number" id="trials-input" value="10" min="1" max="100" />
+        </div>
+        <div class="input-group">
+          <label for="max-nodes-input">Max Nodes:</label>
+          <input type="number" id="max-nodes-input" value="500" min="10" max="1000" />
+        </div>
+        <button id="run-experiment-btn" class="btn btn-primary">Run Experiment</button>
+        <button id="export-results-btn" class="btn btn-secondary" style="display: none;">Export Results</button>
+      </div>
+
+      <div class="error-display" id="analytics-error"></div>
+
+      <div class="loading-indicator" id="loading-indicator" style="display: none;">
+        <div class="spinner"></div>
+        <p>Running experiment...</p>
+      </div>
+
+      <div class="analytics-results" id="analytics-results">
+        <div class="stats-panel" id="stats-panel">
+          <h3>Statistics</h3>
+          <div id="regression-stats"></div>
+        </div>
+
+        <div class="chart-container">
+          <h4>Nodes vs Height</h4>
+          <svg id="height-plot" width="100%" height="350"></svg>
+        </div>
+
+        <div class="chart-container">
+          <h4>Nodes vs Rotations</h4>
+          <svg id="rotations-plot" width="100%" height="300"></svg>
+        </div>
+
+        <div class="chart-container">
+          <h4>Nodes vs Recolors</h4>
+          <svg id="recolors-plot" width="100%" height="300"></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- D3.js -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  
+  <!-- Application Scripts -->
+  <script src="js/api.js?v=3"></script>
+  <script src="js/utils/formatters.js?v=3"></script>
+  <script src="js/utils/chartHelpers.js?v=5"></script>
+  <script src="js/visualization/TreeRenderer.js?v=5"></script>
+  <script src="js/visualization/AnimationController.js?v=4"></script>
+  <script src="js/components/TabManager.js?v=4"></script>
+  <script src="js/components/ErrorDisplay.js?v=4"></script>
+  <script src="js/components/HistoryPanel.js?v=4"></script>
+  <script src="js/components/MetricsDisplay.js?v=4"></script>
+  <script src="js/controllers/VisualizationController.js?v=4"></script>
+  <script src="js/controllers/PerformanceController.js?v=5"></script>
+  <script src="js/controllers/AnalyticsController.js?v=6"></script>
+  <script src="js/main.js?v=3"></script>
+</body>
+</html>

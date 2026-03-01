@@ -1,0 +1,178 @@
+/* Performance Mode Styles */
+
+.comparison-results {
+  background: var(--bg-secondary);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.comparison-results h3 {
+  margin-bottom: 20px;
+  color: var(--accent-primary);
+}
+
+/* Comparison Table */
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+  background: var(--bg-tertiary);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.comparison-table thead {
+  background: var(--accent-secondary);
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.comparison-table th {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.comparison-table tbody tr:hover {
+  background: rgba(233, 69, 96, 0.1);
+}
+
+.comparison-table .best-value {
+  color: var(--success);
+  font-weight: bold;
+}
+
+.comparison-table .worst-value {
+  color: var(--danger);
+  font-weight: bold;
+}
+
+/* Chart Container */
+.chart-container {
+  margin-top: 30px;
+  background: var(--bg-tertiary);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.chart-container h4 {
+  margin-bottom: 15px;
+  color: var(--text-primary);
+}
+
+#comparison-chart {
+  background: var(--bg-primary);
+  border-radius: 8px;
+}
+
+/* Chart Styles */
+.chart-axis path,
+.chart-axis line {
+  stroke: var(--text-secondary);
+}
+
+.chart-axis text {
+  fill: var(--text-primary);
+  font-size: 12px;
+}
+
+.chart-line {
+  fill: none;
+  stroke-width: 3px;
+}
+
+.chart-line.rb {
+  stroke: var(--accent-primary);
+}
+
+.chart-line.avl {
+  stroke: var(--info);
+}
+
+.chart-line.bst {
+  stroke: var(--warning);
+}
+
+.chart-dot {
+  r: 5;
+}
+
+.chart-dot.rb {
+  fill: var(--accent-primary);
+}
+
+.chart-dot.avl {
+  fill: var(--info);
+}
+
+.chart-dot.bst {
+  fill: var(--warning);
+}
+
+.chart-legend {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 15px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-color {
+  width: 20px;
+  height: 4px;
+  border-radius: 2px;
+}
+
+.legend-color.rb {
+  background: var(--accent-primary);
+}
+
+.legend-color.avl {
+  background: var(--info);
+}
+
+.legend-color.bst {
+  background: var(--warning);
+}
+
+/* Side-by-Side Container */
+.side-by-side-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.tree-view {
+  background: var(--bg-tertiary);
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.tree-view h4 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: var(--accent-primary);
+}
+
+.tree-view svg {
+  background: var(--bg-primary);
+  border-radius: 8px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .side-by-side-container {
+    grid-template-columns: 1fr;
+  }
+}

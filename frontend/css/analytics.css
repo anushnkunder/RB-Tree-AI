@@ -1,0 +1,165 @@
+/* Analytics Mode Styles */
+
+.analytics-results {
+  background: var(--bg-secondary);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.stats-panel {
+  background: var(--bg-tertiary);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.stats-panel h3 {
+  margin-bottom: 15px;
+  color: var(--accent-primary);
+}
+
+#regression-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.stat-item {
+  padding: 15px;
+  background: var(--bg-primary);
+  border-radius: 6px;
+  border-left: 4px solid var(--accent-primary);
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 5px;
+}
+
+.stat-value {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+/* Plot Styles */
+.chart-container svg {
+  background: var(--bg-primary);
+  border-radius: 8px;
+}
+
+.plot-axis path,
+.plot-axis line {
+  stroke: var(--text-secondary);
+}
+
+.plot-axis text {
+  fill: var(--text-primary);
+  font-size: 11px;
+}
+
+.plot-line {
+  fill: none;
+  stroke-width: 3px;
+}
+
+.plot-line.actual {
+  stroke: var(--accent-primary);
+  stroke-width: 3px;
+}
+
+.plot-line.regression {
+  stroke: var(--info);
+  stroke-dasharray: 5, 5;
+  stroke-width: 2px;
+}
+
+.plot-line.theoretical {
+  stroke: var(--warning);
+  stroke-dasharray: 3, 3;
+  stroke-width: 2px;
+}
+
+.plot-dot {
+  r: 5;
+  fill: var(--accent-primary);
+  opacity: 0.9;
+  stroke: white;
+  stroke-width: 2px;
+}
+
+.plot-dot:hover {
+  r: 7;
+  opacity: 1;
+}
+
+/* Plot Legend */
+.plot-legend {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+
+.plot-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.plot-legend-line {
+  width: 30px;
+  height: 3px;
+}
+
+.plot-legend-line.actual {
+  background: var(--accent-primary);
+}
+
+.plot-legend-line.regression {
+  background: var(--info);
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--info),
+    var(--info) 5px,
+    transparent 5px,
+    transparent 10px
+  );
+}
+
+.plot-legend-line.theoretical {
+  background: var(--warning);
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--warning),
+    var(--warning) 3px,
+    transparent 3px,
+    transparent 6px
+  );
+}
+
+/* Grid Lines */
+.grid-line {
+  stroke: var(--border-color);
+  stroke-width: 1px;
+  stroke-opacity: 0.3;
+}
+
+/* Tooltip */
+.plot-tooltip {
+  position: absolute;
+  background: var(--bg-secondary);
+  border: 2px solid var(--accent-primary);
+  border-radius: 6px;
+  padding: 10px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+  font-size: 0.9rem;
+}
+
+.plot-tooltip.show {
+  opacity: 1;
+}
